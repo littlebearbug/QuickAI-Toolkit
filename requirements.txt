@@ -1,0 +1,4 @@
+customtkinter
+requests
+pyperclip
+pynput
