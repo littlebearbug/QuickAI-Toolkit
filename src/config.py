@@ -15,3 +15,11 @@ WINDOW_WIDTH = 450
 WINDOW_HEIGHT = 350
 UI_THEME = "dark-blue" # "blue", "green"
 UI_APPEARANCE = "System" # "System", "Light", "Dark"
+
+TRANSLATION_TARGETS = [
+    ("翻译为中文", "Simplified Chinese"),
+    ("Translate to English", "English"),
+    ("日本語に翻訳", "Japanese"),
+    ("Traduire en Français", "French"),
+    ("번역하기", "Korean"),
+]
