@@ -1,0 +1,20 @@
+{
+    "current_provider": "Ollama",
+    "providers": {
+        "Ollama": {
+            "api_url": "http://localhost:11434/v1/chat/completions",
+            "model_name": "granite4:latest",
+            "api_key": ""
+        },
+        "OpenAI": {
+            "api_url": "https://api.openai.com/v1/chat/completions",
+            "model_name": "gpt-4o",
+            "api_key": "YOUR_OPENAI_API_KEY"
+        },
+        "Groq": {
+            "api_url": "https://api.groq.com/openai/v1/chat/completions",
+            "model_name": "llama3-8b-8192",
+            "api_key": "YOUR_GROQ_API_KEY"
+        }
+    }
+}
