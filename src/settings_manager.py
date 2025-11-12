@@ -17,7 +17,7 @@ class SettingsManager:
             "current_provider": "Ollama",
             "providers": {
                 "Ollama": {
-                    "api_url": "http://localhost:11434/v1/chat/completions",
+                    "api_url": "http://localhost:11434/v1/chat",
                     "model_name": "granite4:latest",
                     "api_key": "" # Not used, but here for structural consistency
                 },

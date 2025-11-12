@@ -1,5 +1,3 @@
-# src/hotkey_manager.py
-
 import threading
 from pynput import keyboard
 from src import config
