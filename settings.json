@@ -2,7 +2,7 @@
     "current_provider": "Ollama",
     "providers": {
         "Ollama": {
-            "api_url": "http://localhost:11434/v1/chat/completions",
+            "api_url": "http://localhost:11434/api/chat",
             "model_name": "granite4:latest",
             "api_key": ""
         },

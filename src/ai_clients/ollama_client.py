@@ -6,7 +6,7 @@ from typing import Generator, List, Dict
 from .base_client import BaseAIClient
 
 class OllamaClient(BaseAIClient):
-    """Client for local Ollama or OpenAI-compatible local models."""
+    """Client for native Ollama API."""
 
     def __init__(self, api_url: str, model_name: str, **kwargs):
         self.api_url = api_url
@@ -24,17 +24,24 @@ class OllamaClient(BaseAIClient):
                 response.raise_for_status()
                 for line in response.iter_lines():
                     if line:
-                        decoded_line = line.decode('utf-8')
-                        if decoded_line.startswith('data: '):
-                            data_str = decoded_line[len('data: '):].strip()
-                            if data_str == '[DONE]':
+                        try:
+                            # Ollama's native stream format is one JSON object per line
+                            data = json.loads(line.decode('utf-8'))
+                            
+                            # Check for errors in the stream
+                            if "error" in data:
+                                yield f"\n--- OLLAMA API ERROR ---\n{data['error']}"
                                 break
-                            try:
-                                data = json.loads(data_str)
-                                content = data.get("choices", [{}])[0].get("delta", {}).get("content")
-                                if content:
-                                    yield content
-                            except json.JSONDecodeError:
-                                continue
+
+                            # The final summary object has 'done: true' and no 'message'
+                            if data.get("done"):
+                                break
+                            
+                            content = data.get("message", {}).get("content", "")
+                            if content:
+                                yield content
+                        except json.JSONDecodeError:
+                            # Skip empty or malformed lines
+                            continue
         except requests.RequestException as e:
             yield f"\n--- API请求错误 ---\n{e}"

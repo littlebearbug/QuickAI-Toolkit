@@ -12,7 +12,7 @@ def main():
     ctk.set_default_color_theme(UI_THEME)
     
     root = ctk.CTk()
-    app = QuickAIToolkit(root)
+    QuickAIToolkit(root)
     root.mainloop()
 
 if __name__ == "__main__":
